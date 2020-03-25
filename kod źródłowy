@@ -1,0 +1,37 @@
+#include<iostream>
+#include <string>
+
+using namespace std;
+
+string rozkodujHaslo(string tablicaZnakow)
+{
+    string rozkodowywanyZnak, odkodowaneHaslo;
+
+    int dlugosc = tablicaZnakow.length();
+
+    for(int litery = 0; litery < 20; litery += 2)
+    {
+        if((tablicaZnakow[litery] > 80) ||(tablicaZnakow[litery]< 65)||(dlugosc!= 20))
+        {
+            break;
+        }
+        else
+        {
+            rozkodowywanyZnak = (tablicaZnakow[litery]-65) + ((tablicaZnakow[litery+1]- 65)* 16);
+            odkodowaneHaslo += rozkodowywanyZnak;
+            rozkodowywanyZnak.clear();
+        }
+    }
+    return odkodowaneHaslo;
+}
+
+int main()
+{
+    string zaszyfrowaneHaslo;
+   
+    while(cin>>zaszyfrowaneHaslo)
+    {
+        cout<<rozkodujHaslo(zaszyfrowaneHaslo)<<endl;
+    }
+    return 0;
+}
